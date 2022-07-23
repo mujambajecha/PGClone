@@ -13,7 +13,7 @@ ctdrive() {
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 🚀 Create TeamDrive
 
-https://accounts.google.com/o/oauth2/auth?client_id=$pgclonepublic&redirect_uri=urn:ietf:wg:oauth:2.0:oob&scope=https://www.googleapis.com/auth/drive&response_type=code
+https://accounts.google.com/o/oauth2/auth?client_id=$pgclonepublic&redirect_uri=http://localhost:3000&scope=https://www.googleapis.com/auth/drive&response_type=code
 
 Copy & Paste the URL into Browser! Ensure to utilize and login with
 the correct Google Account!
@@ -28,7 +28,7 @@ into the browser, it will just work!
 EOF
   read -p '↘️  Token | PRESS [ENTER]: ' token </dev/tty
   if [[ "$token" == "exit" || "$token" == "Exit" || "$token" == "EXIT" || "$token" == "z" || "$token" == "Z" ]]; then clonestart; fi
-  curl --request POST --data "code=$token&client_id=$pgclonepublic&client_secret=$pgclonesecret&redirect_uri=urn:ietf:wg:oauth:2.0:oob&grant_type=authorization_code" https://accounts.google.com/o/oauth2/token >/opt/appdata/plexguide/pgclone.info
+  curl --request POST --data "code=$token&client_id=$pgclonepublic&client_secret=$pgclonesecret&redirect_uri=http://localhost:3000&grant_type=authorization_code" https://accounts.google.com/o/oauth2/token >/opt/appdata/plexguide/pgclone.info
 
   accesstoken=$(cat /opt/appdata/plexguide/pgclone.info | grep access_token | awk '{print $2}')
 
