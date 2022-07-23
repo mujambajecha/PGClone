@@ -92,12 +92,12 @@ tee <<-EOF
 Quitting? Type > exit
 NOTE: Copy & Paste Url into Browser | Use Correct Google Account!
 
-https://accounts.google.com/o/oauth2/v2/auth?scope=email%20profile&response_type=code&state=security_token%3D138r5719ru3e1%26url%3Dhttps%3A%2F%2Foauth2.example.com%2Ftoken&redirect_uri=com.example.app%3A/oauth2redirect&client_id=client_id
+https://accounts.google.com/o/oauth2/v2/auth?scope=email%20profile&response_type=code&state=security_token%3D138r5719ru3e1%26url%3Dhttps%3A%2F%2Foauth2.example.com%2Ftoken&redirect_uri=redirect_uri=http://localhost:3000%3A/oauth2redirect&client_id=client_id
 
 EOF
   read -p '↘️  Token | PRESS [ENTER]: ' token < /dev/tty
   if [ "$token" = "exit" ]; then mountsmenu; fi
-  curl --request POST --data "code=$token&client_id=$public&client_secret=$secret&redirect_uri=urn:ietf:wg:oauth:2.0:oob&grant_type=authorization_code" https://accounts.google.com/o/oauth2/token > /pg/var/pgtokentm.output
+  curl --request POST --data "code=$token&client_id=$public&client_secret=$secret&redirect_uri=http://localhost:3000&grant_type=authorization_code" https://accounts.google.com/o/oauth2/token > /pg/var/pgtokentm.output
   cat /pg/var/pgtokentm.output | grep access_token | awk '{ print $2 }' | cut -c2- | rev | cut -c3- | rev > /pg/var/pgtokentm2.output
   primet=$(cat /pg/var/pgtokentm2.output)
   curl -H "GData-Version: 3.0" -H "Authorization: Bearer $primet" https://www.googleapis.com/drive/v3/teamdrives > /pg/rclone/teamdrive.output
@@ -185,12 +185,12 @@ tee <<-EOF
 Quitting? Type > exit
 NOTE: Copy & Paste Url into Browser | Use Correct Google Account!
 
-https://accounts.google.com/o/oauth2/v2/auth?scope=email%20profile&response_type=code&state=security_token%3D138r5719ru3e1%26url%3Dhttps%3A%2F%2Foauth2.example.com%2Ftoken&redirect_uri=com.example.app%3A/oauth2redirect&client_id=client_id
+https://accounts.google.com/o/oauth2/v2/auth?scope=email%20profile&response_type=code&state=security_token%3D138r5719ru3e1%26url%3Dhttps%3A%2F%2Foauth2.example.com%2Ftoken&redirect_uri=redirect_uri=http://localhost:3000%3A/oauth2redirect&client_id=client_id
 
 EOF
   read -p '↘️  Token | PRESS [ENTER]: ' token < /dev/tty
   if [ "$token" = "exit" ]; then mountsmenu; fi
-  curl --request POST --data "code=$token&client_id=$public&client_secret=$secret&redirect_uri=urn:ietf:wg:oauth:2.0:oob&grant_type=authorization_code" https://accounts.google.com/o/oauth2/token > /pg/rclone/pgclone.info
+  curl --request POST --data "code=$token&client_id=$public&client_secret=$secret&redirect_uri=http://localhost:3000&grant_type=authorization_code" https://accounts.google.com/o/oauth2/token > /pg/rclone/pgclone.info
 
   accesstoken=$(cat /pg/rclone/pgclone.info | grep access_token | awk '{print $2}')
   refreshtoken=$(cat /pg/rclone/pgclone.info | grep refresh_token | awk '{print $2}')
