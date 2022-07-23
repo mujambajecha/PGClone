@@ -1,5 +1,6 @@
 #!/bin/bash
 #
+<<<<<<< HEAD
 # Title:      PGBlitz (Reference Title File)
 # Authors:    Admin9705, Deiteq, and many PGBlitz Contributors
 # URL:        https://pgblitz.com - http://github.pgblitz.com
@@ -11,6 +12,21 @@ blitzpasswordmain() {
   clonesalt57=$(cat /var/plexguide/pgclone.salt)
   if [[ "$pstatus" != "NOT-SET" ]]; then
     tee <<-EOF
+=======
+# Title:      Reference Title File - PGBlitz
+# Author(s):  Admin9705 & https://github.com/PGBlitz/PGClone/graphs/contributors
+# URL:        https://pgblitz.com - http://github.pgblitz.com
+# GNU:        General Public License v3.0
+################################################################################
+blitzpasswordmain () {
+pgclonevars
+
+clonepassword57=$(cat /pg/rclone/pgclone.password)
+clonesalt57=$(cat /pg/rclone/pgclone.salt)
+
+if [[ "$pstatus" != "NOT-SET" ]]; then
+tee <<-EOF
+>>>>>>> ba72cca3f19b78e8913b8ea0e801932c5efe6965
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 🚀 rClone - Change Values?
@@ -27,12 +43,13 @@ Change the Stored Values?
 
 WARNING: Changing the values will RESET & DELETE the following:
 1. GDrive
-2. TDrive
+2. SDrive
 3. Service Keys
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 EOF
+<<<<<<< HEAD
     read -p '↘️  Input Value | Press [Enter]: ' typed </dev/tty
     case $typed in
     2)
@@ -50,6 +67,28 @@ EOF
     esac
   fi
   tee <<-EOF
+=======
+read -p '↘️  Input Value | Press [Enter]: ' typed < /dev/tty
+case $typed in
+2 )
+    rm -rf /pg/rclone/pgclone.password 1>/dev/null 2>&1
+    rm -rf /pg/rclone/pgclone.salt 1>/dev/null 2>&1
+
+    rm -rf /pg/rclone/.gc 1>/dev/null 2>&1
+    rm -rf /pg/rclone/.gd 1>/dev/null 2>&1
+    rm -rf /pg/rclone/.sc 1>/dev/null 2>&1
+    rm -rf /pg/rclone/.sd 1>/dev/null 2>&1
+    rm -rf /pg/rclone/pgclone.teamdrive 1>/dev/null 2>&1
+    ;;
+1 )
+    clonestart ;;
+* )
+    blitzpasswordmain ;;
+esac
+fi
+
+tee <<-EOF
+>>>>>>> ba72cca3f19b78e8913b8ea0e801932c5efe6965
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 🌎 Primary Password
@@ -111,6 +150,7 @@ SALT   : $secondarypassword
 
 EOF
 
+<<<<<<< HEAD
   read -p '↘️  Type y or n | Press [ENTER]: ' typed </dev/tty
   if [[ "$typed" == "n" ]]; then
     blitzpasswordmain
@@ -119,6 +159,17 @@ EOF
     echo $secondarypassword >/var/plexguide/pgclone.salt
   else blitzpasswordfinal; fi
   tee <<-EOF
+=======
+read -p '↘️  Type y or n | Press [ENTER]: ' typed < /dev/tty
+
+if [[ "$typed" == "n" ]]; then blitzpasswordmain;
+elif [[ "$typed" == "y" ]]; then
+echo $primarypassword > /pg/rclone/pgclone.password
+echo $secondarypassword > /pg/rclone/pgclone.salt
+else blitzpasswordfinal; fi
+
+tee <<-EOF
+>>>>>>> ba72cca3f19b78e8913b8ea0e801932c5efe6965
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 🌎 Process Complete

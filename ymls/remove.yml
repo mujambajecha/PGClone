@@ -1,7 +1,12 @@
 #!/bin/bash
 #
+<<<<<<< HEAD
 # Title:      PGBlitz (Reference Title File)
 # Authors:    Admin9705, Deiteq, and many PGBlitz Contributors
+=======
+# Title:      Reference Title File - PGBlitz
+# Author(s):  Admin9705 & https://github.com/PGBlitz/PGClone/graphs/contributors - Deiteq
+>>>>>>> ba72cca3f19b78e8913b8ea0e801932c5efe6965
 # URL:        https://pgblitz.com - http://github.pgblitz.com
 # GNU:        General Public License v3.0
 ################################################################################
@@ -10,6 +15,7 @@
   gather_facts: false
   vars:
     service_vars:
+<<<<<<< HEAD
       - { name: crypt.service }
       - { name: pgdrive.service }
       - { name: gdrive.service }
@@ -24,9 +30,19 @@
       - { name: plexdrive.service }
       - { name: st2monitor.service }
       - { name: pgunion.service }
+=======
+      - {name: crypt.service}
+      - {name: gd.service}
+      - {name: gc.service}
+      - {name: sd.service}
+      - {name: sc.service}
+      - {name: pgunity.service}
+      - {name: transfer.service}
+>>>>>>> ba72cca3f19b78e8913b8ea0e801932c5efe6965
   tasks:
     - name: Stop All Docker Containers
       shell: docker stop $(docker ps -a -q)
+      ignore_errors: yes
 
     - name: Get existing services
       stat:

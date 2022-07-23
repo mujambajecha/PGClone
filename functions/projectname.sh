@@ -1,7 +1,12 @@
 #!/bin/bash
 #
+<<<<<<< HEAD
 # Title:      PGBlitz (Reference Title File)
 # Authors:    Admin9705, Deiteq, and many PGBlitz Contributors
+=======
+# Title:      Reference Title File - PGBlitz
+# Author(s):  Admin9705 & https://github.com/PGBlitz/PGClone/graphs/contributors
+>>>>>>> ba72cca3f19b78e8913b8ea0e801932c5efe6965
 # URL:        https://pgblitz.com - http://github.pgblitz.com
 # GNU:        General Public License v3.0
 ################################################################################
@@ -70,6 +75,7 @@ EOF
   projectlist
   tee <<-EOF
 
+<<<<<<< HEAD
 Qutting? Type >>> z or exit
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -82,21 +88,95 @@ EOF
     echo
     gcloud config set project ${existingnumber} --account=${pgcloneemail}
     tee <<-EOF
+=======
+Qutting? Type >>> Exit
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+EOF
+read -p '↘️  Use Which Existing Project? | Press [ENTER]: ' typed < /dev/tty
+if [[ "$typed" == "Exit" || "$typed" == "exit" || "$typed" == "EXIT" ]]; then clonestart; fi
+
+# Repeats if Users Fails the Range
+if [[ "$typed" -ge "1" && "$typed" -le "$pnum" ]]; then
+existingnumber=$(cat /pg/var/prolist/$typed)
+
+echo
+gcloud config set project ${existingnumber} --account=${pgcloneemail}
+
+tee <<-EOF
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🚀 PG Clone - Enabling Your API (Standby) ~ pgclone.pgblitz.com
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+EOF
+gcloud services enable drive.googleapis.com --project ${existingnumber} --account=${pgcloneemail}
+else exisitingproject; fi
+echo
+read -p '↘️  Existing Project Set | Press [ENTER] ' typed < /dev/tty
+echo "${existingnumber}" > /pg/rclone/pgclone.project
+clonestart
+}
+
+destroyproject () {
+tee <<-EOF
+>>>>>>> ba72cca3f19b78e8913b8ea0e801932c5efe6965
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 🚀 rClone - Enabling Your API (Standby)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 EOF
+<<<<<<< HEAD
     gcloud services enable drive.googleapis.com --project ${existingnumber} --account=${pgcloneemail}
   else exisitingproject; fi
+=======
+projectlist
+tee <<-EOF
+
+Qutting? Type >>> Exit
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+EOF
+read -p '↘️  Destroy Which Project? | Press [ENTER]: ' typed < /dev/tty
+if [[ "$typed" == "Exit" || "$typed" == "exit" || "$typed" == "EXIT" ]]; then optionsmenu; fi
+
+# Repeats if Users Fails the Range
+if [[ "$typed" -ge "1" && "$typed" -le "$pnum" ]]; then
+destroynumber=$(cat /pg/var/prolist/$typed)
+
+  # Cannot Destroy Active Project
+  if [[ $(cat /pg/rclone/pgclone.project) == "$destroynumber" ]]; then
+>>>>>>> ba72cca3f19b78e8913b8ea0e801932c5efe6965
   echo
   read -p '↘️  Existing Project Set | Press [ENTER] ' typed </dev/tty
   echo "${existingnumber}" >/var/plexguide/pgclone.project
   clonestart
 }
+<<<<<<< HEAD
 destroyproject() {
   tee <<-EOF
+=======
+
+projectlist () {
+pnum=0
+mkdir -p /pg/var/prolist
+rm -rf /pg/var/prolist/* 1>/dev/null 2>&1
+
+gcloud projects list --account=${pgcloneemail} | tail -n +2 | awk '{print $1}' > /pg/var/prolist/prolist.sh
+
+while read p; do
+  let "pnum++"
+  echo "$p" > "/pg/var/prolist/$pnum"
+  echo "[$pnum] $p" >> /pg/var/prolist/final.sh
+  echo "[$pnum] ${filler}${p}"
+done </pg/var/prolist/prolist.sh
+}
+
+projectnamecheck () {
+
+pgclonevars
+if [[ "$pgcloneproject" == "NOT-SET" ]]; then
+tee <<-EOF
+>>>>>>> ba72cca3f19b78e8913b8ea0e801932c5efe6965
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 🚀 rClone - Destroy Project
@@ -172,7 +252,7 @@ WARNING ~ WARNING ~ WARNING ~ WARNING ~ WARNING ~ WARNING ~ WARNING
 
 Creating a NEW PROJECT will require a new Google CLIENT ID and SECRET from
 this project to be created! As a result when finished; this will also
-result in destroying the set gdrive/tdrive information due to the new
+result in destroying the set gdrive/sdrive information due to the new
 project being created!
 
 This will also destroy any TRANSPORT MODE deployed and including any
@@ -233,8 +313,13 @@ EOF
 
 EOF
 
+<<<<<<< HEAD
   gcloud services enable drive.googleapis.com --project $projectid --account=${pgcloneemail}
   echo "$projectid" >/var/plexguide/pgclone.project
+=======
+gcloud services enable drive.googleapis.com --project $projectid --account=${pgcloneemail}
+echo "$projectid" > /pg/rclone/pgclone.project
+>>>>>>> ba72cca3f19b78e8913b8ea0e801932c5efe6965
 
   tee <<-EOF
 
@@ -243,6 +328,7 @@ EOF
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 EOF
+<<<<<<< HEAD
   rm -rf /var/plexguide/pgclone.secret 1>/dev/null 2>&1
   rm -rf /var/plexguide/pgclone.public 1>/dev/null 2>&1
   rm -rf /var/plexguide/pgclone.secret 1>/dev/null 2>&1
@@ -261,6 +347,27 @@ EOF
   docker rm emby 1>/dev/null 2>&1
   ansible-playbook /opt/pgclone/ymls/remove.yml
   tee <<-EOF
+=======
+rm -rf /pg/rclone/pgclone.secret 1>/dev/null 2>&1
+rm -rf /pg/rclone/pgclone.public 1>/dev/null 2>&1
+rm -rf /pg/rclone/pgclone.secret 1>/dev/null 2>&1
+rm -rf /pg/rclone/.sd 1>/dev/null 2>&1
+rm -rf /pg/rclone/.gd 1>/dev/null 2>&1
+rm -rf /pg/rclone/.gc 1>/dev/null 2>&1
+rm -rf /pg/rclone/.sc 1>/dev/null 2>&1
+rm -rf /pg/rclone/pgclone.teamdrive 1>/dev/null 2>&1
+rm -rf /pg/rclone/deployed.version 1>/dev/null 2>&1
+
+docker stop jellyfin 1>/dev/null 2>&1
+docker stop plex 1>/dev/null 2>&1
+docker stop emby 1>/dev/null 2>&1
+docker rm jellyfin 1>/dev/null 2>&1
+docker rm plex 1>/dev/null 2>&1
+docker rm emby 1>/dev/null 2>&1
+
+ansible-playbook /pg/pgclone/ymls/remove.yml
+tee <<-EOF
+>>>>>>> ba72cca3f19b78e8913b8ea0e801932c5efe6965
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 🚀 rClone - Prior Stored Information is Reset!

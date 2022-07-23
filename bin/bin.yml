@@ -1,16 +1,22 @@
 #!/bin/bash
 #
+<<<<<<< HEAD:bin/bin.yml
 # Title:      PGBlitz (Reference Title File)
 
+=======
+# Title:      Reference Title File - PGBlitz
+# Author(s):  Admin9705 & https://github.com/PGBlitz/PGClone/graphs/contributors - Deiteq
+>>>>>>> ba72cca3f19b78e8913b8ea0e801932c5efe6965:ymls/alias.yml
 # URL:        https://pgblitz.com - http://github.pgblitz.com
 # GNU:        General Public License v3.0
 ################################################################################
 ---
-- name: Removing old service helpers
+- name: Removing Old Service Helpers
   file:
     path: '/bin/{{item}}'
     state: absent
   with_items:
+<<<<<<< HEAD:bin/bin.yml
     - blitz
     - move
     - nrclone
@@ -42,15 +48,52 @@
     - ndrives
     - pglog
     - pglogs
+=======
+    - edit-gc
+    - edit-gd
+    - edit-transport
+    - edit-pgunity
+    - edit-rclone
+    - edit-sc
+    - edit-sd
+    - status-transport
+    - status-gc
+    - status-gd
+    - status-pgunity
+    - status-rclone
+    - status-gc
+    - status-sd
+>>>>>>> ba72cca3f19b78e8913b8ea0e801932c5efe6965:ymls/alias.yml
 
-- name: Installing service helpers
+- name: Installing Service helpers
   template:
+<<<<<<< HEAD:bin/bin.yml
     src: '/opt/pgclone/bin/templates/{{item}}'
+=======
+    src: "/pg/pgclone/templates/{{item}}"
+>>>>>>> ba72cca3f19b78e8913b8ea0e801932c5efe6965:ymls/alias.yml
     dest: /bin/{{item}}
     force: yes
     mode: 0755
   with_items:
+<<<<<<< HEAD:bin/bin.yml
     - mgupdate
     - rcupdate
     - pglog
     - tlogs
+=======
+    - edit-gc
+    - edit-gd
+    - edit-transport
+    - edit-pgunity
+    - edit-rclone
+    - edit-sc
+    - edit-sd
+    - status-transport
+    - status-gc
+    - status-gd
+    - status-pgunity
+    - status-rclone
+    - status-gc
+    - status-sd
+>>>>>>> ba72cca3f19b78e8913b8ea0e801932c5efe6965:ymls/alias.yml

@@ -1,7 +1,12 @@
 #!/bin/bash
 #
+<<<<<<< HEAD
 # Title:      PGBlitz (Reference Title File)
 # Authors:    Admin9705, Deiteq, and many PGBlitz Contributors
+=======
+# Title:      Reference Title File - PGBlitz
+# Author(s):  Admin9705 & https://github.com/PGBlitz/PGClone/graphs/contributors - Deiteq
+>>>>>>> ba72cca3f19b78e8913b8ea0e801932c5efe6965
 # URL:        https://pgblitz.com - http://github.pgblitz.com
 # GNU:        General Public License v3.0
 ################################################################################
@@ -9,6 +14,7 @@
 - hosts: localhost
   gather_facts: false
   tasks:
+<<<<<<< HEAD
     - name: include rClone aliases
       include_tasks: '/opt/pgclone/bin/bin.yml'
 
@@ -28,27 +34,43 @@
         - '/var/plexguide/logs/uploader'
         - '/opt/plexguide/roles/log'
       ignore_errors: yes
+=======
+    - name: include PGClone aliases
+      include_tasks: '/pg/pgclone/ymls/alias.yml'
+>>>>>>> ba72cca3f19b78e8913b8ea0e801932c5efe6965
 
     - debug: msg="Combined Path - {{multihds}}"
 
     - name: Install Union Script
       template:
+<<<<<<< HEAD
         src: /opt/pgclone/mounts/local.sh
         dest: /opt/appdata/plexguide/pgunion.sh
         force: yes
 
     - name: Install Union Service
-      template:
-        src: /opt/pgclone/mounts/pgunion.service
-        dest: /etc/systemd/system/pgunion.service
+=======
+        src: /pg/pgclone/source/local.sh
+        dest: /pg/rclone/pgunity.sh
         force: yes
 
+    - name: Install PGUnity Service
+>>>>>>> ba72cca3f19b78e8913b8ea0e801932c5efe6965
+      template:
+        src: /pg/pgclone/mounts/pgunity.service
+        dest: /etc/systemd/system/pgunity.service
+        force: yes
+
+<<<<<<< HEAD
     - name: Reload Union Service
+=======
+    - name: Reload PGUnity Service
+>>>>>>> ba72cca3f19b78e8913b8ea0e801932c5efe6965
       systemd:
         daemon_reload: yes
         enabled: yes
         state: reloaded
-        name: pgunion
+        name: pgunity
 
     - name: Sleep 2 Seconds
       wait_for: timeout=2
